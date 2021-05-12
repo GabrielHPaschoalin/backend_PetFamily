@@ -5,13 +5,13 @@ exports.up = function (knex) {
     table.string("email").notNullable();
     table.string("password").notNullable();
     table.string("number").notNullable();
-    table.int("cpf").notNullable();
-    table.int("cep").notNullable();
+    table.string("cpf").notNullable();
+    table.string("cep").notNullable();
     table.string("complement").notNullable();
-    table.int("birthDate").notNullable();
+    table.date("birthDate").notNullable();
   });
 };
 
 exports.down = function (knex) {
-  return knex.cheman.dropTable("user");
+  return knex.schema.dropTable("user");
 };
