@@ -9,6 +9,7 @@ exports.up = function (knex) {
     table.string("cep").notNullable();
     table.string("complement").notNullable();
     table.date("birthDate").notNullable();
+    table.string("firebase_id").notNullable();
   });
 };
 
