@@ -24,7 +24,7 @@ module.exports = {
       const result = await User.getById(user_id);
 
       return response.status(200).json(result);
-    } catch (err) {
+    } catch (error) {
       console.log("User getById failed: " + err);
       return response.status(500).json({
         notification: "Internal server error while trying to get User",
