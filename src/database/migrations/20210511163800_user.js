@@ -5,10 +5,10 @@ exports.up = function (knex) {
     table.string("email").notNullable();
     table.string("password").notNullable();
     table.string("number").notNullable();
-    table.string("cpf").notNullable();
-    table.string("cep").notNullable();
-    table.string("complement").notNullable();
-    table.date("birthDate").notNullable();
+    table.string("cpf");
+    table.string("cep");
+    table.string("complement");
+    table.date("birthDate");
     table.string("firebase_id").notNullable();
   });
 };
