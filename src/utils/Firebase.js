@@ -15,7 +15,7 @@ module.exports = {
   async createNewUser(email, password) {
     const result = await firebase
       .auth()
-      .createUserWithEmailandPassword(email, password);
+      .createUserWithEmailAndPassword(email, password);
 
     return result.user.uid;
   },

@@ -1,23 +1,23 @@
 const { create } = require("../models/UserModel");
 const UserModel = require("../models/UserModel");
 const Firebase = require("../utils/Firebase");
-const firebase = require("../utils/Firebase");
 
 module.exports = {
   async create(request, response) {
     try {
       const user = request.body;
+      let uid;
 
-      const uid = await Firebase.createNewUser(
-        user.name,
-        user.email,
-        user.password,
-        user.number
-      );
+      try {
+        uid = await Firebase.createNewUser(user.email, user.password);
+      } catch (error) {
+        return response.status(400).json(error);
+      }
 
       delete user.password;
       user.firebase_id = uid;
 
+      console.log(user);
       const result = await UserModel.create(user);
 
       return response.status(200).json({ user_id: result });
