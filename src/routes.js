@@ -14,47 +14,12 @@ requisição: Retorna um status:
 
 const express = require("express");
 const routes = express.Router();
+const UserController = require("./controllers/UserController");
 
-const aoba = [
-  {
-    id: 1,
-    nome: "Giovannipantuzzo",
-  },
-  {
-    id: 2,
-    nome: "Gabriel",
-  },
-];
-
-//rec - requisição // res - resposta a requisição
-
-routes.get("/user", (req, res) => {
-  const query = req.query;
-  console.log(query);
-  res.status(200).json(aoba);
-});
-
-routes.post("/user", (req, res) => {
-  const newUser = req.body;
-  aoba.push(newUser);
-  res.status(200).json({ message: "Sucess" });
-});
-
-routes.put("/user/:userId", (req, res) => {
-  const { userId } = req.params;
-  const newFields = req.body;
-
-  let selectedIndex;
-
-  let selected = aoba.find((user, index) => {
-    selectedIndex = index;
-    return user.id === userId;
-  });
-  selected = { ...selected, ...newFields };
-
-  aoba[selectedIndex] = selected;
-
-  res.status(200).json({ message: "Sucess" });
-});
+//User
+routes.get("/user/:user_id", UserController.getById);
+routes.post("/user", UserController.create);
+routes.put("/user/:user_id", UserController.update);
+routes.delete("/user/:user_id", UserController.delete);
 
 module.exports = routes;
