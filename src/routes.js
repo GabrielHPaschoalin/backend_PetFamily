@@ -11,7 +11,6 @@ requisição: Retorna um status:
 400 - Erro do cliente
 500 - Erro de servidor
 */
-
 const express = require("express");
 const routes = express.Router();
 const UserController = require("./controllers/UserController");
@@ -27,8 +26,8 @@ routes.post("/login", SessionController.signIn);
 //User
 routes.get(
   "/user/:user_id",
-  UserValidator.getById,
-  auth.authenticateToken,
+  // UserValidator.getById,
+  // auth.authenticateToken,
   UserController.getById
 );
 routes.post(

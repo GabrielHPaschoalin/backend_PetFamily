@@ -1,4 +1,3 @@
-const { create } = require("../models/UserModel");
 const UserModel = require("../models/UserModel");
 const Firebase = require("../utils/Firebase");
 
@@ -31,12 +30,13 @@ module.exports = {
   },
 
   async getById(request, response) {
+    console.log(request.params);
+
     try {
       const { user_id } = request.params;
-      const result = await User.getById(user_id);
-
+      const result = await UserModel.getByFields({ user_id });
       return response.status(200).json(result);
-    } catch (error) {
+    } catch (err) {
       console.log("User getById failed: " + err);
       return response.status(500).json({
         notification: "Internal server error while trying to get User",
@@ -48,14 +48,13 @@ module.exports = {
     try {
       const { user_id } = request.params;
       const newUser = request.body;
-
-      await UserModel.updateById(user_id, newUser);
+      await UserModel.updateById(newUser, user_id);
 
       return response
         .status(200)
         .json({ notification: "User updated sucesfully" });
     } catch (error) {
-      console.warn("User creation failed:", error);
+      console.warn("User update failed:", error);
 
       return response.status(500).json({
         notification: "Internal server error while trying to update User",
