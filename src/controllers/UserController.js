@@ -29,12 +29,10 @@ module.exports = {
     }
   },
 
-  async getById(request, response) {
-    console.log(request.params);
-
+  async profile(request, response) {
     try {
-      const { user_id } = request.params;
-      const result = await UserModel.getByFields({ user_id });
+      const { user } = request.session;
+      const result = await UserModel.getByFields({ user_id: user.user_id });
       return response.status(200).json(result);
     } catch (err) {
       console.log("User getById failed: " + err);

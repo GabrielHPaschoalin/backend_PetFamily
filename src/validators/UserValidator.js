@@ -16,9 +16,11 @@ module.exports = {
   }),
 
   getById: celebrate({
-    [Segments.PARAMS]: Joi.object().keys({
-      user_id: Joi.string().required(),
-    }),
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
   }),
 
   update: celebrate({
@@ -30,6 +32,7 @@ module.exports = {
       .keys({
         username: Joi.string().optional(),
         number: Joi.string().optional(),
+        cpf: Joi.string().optional(),
       })
       .min(1),
   }),
