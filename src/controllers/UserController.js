@@ -44,10 +44,9 @@ module.exports = {
 
   async update(request, response) {
     try {
-      const { user_id } = request.params;
+      const { user } = request.session;
       const newUser = request.body;
-      await UserModel.updateById(newUser, user_id);
-
+      await UserModel.updateById(newUser, user.user_id);
       return response
         .status(200)
         .json({ notification: "User updated sucesfully" });

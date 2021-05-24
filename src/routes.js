@@ -37,7 +37,7 @@ routes.post(
   UserController.create
 );
 routes.put(
-  "/user/:user_id",
+  "/user",
   UserValidator.update,
   auth.authenticateToken,
   UserController.update

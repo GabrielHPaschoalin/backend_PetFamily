@@ -24,9 +24,11 @@ module.exports = {
   }),
 
   update: celebrate({
-    [Segments.PARAMS]: Joi.object().keys({
-      user_id: Joi.string().required(),
-    }),
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
 
     [Segments.BODY]: Joi.object()
       .keys({
