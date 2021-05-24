@@ -25,14 +25,14 @@ routes.post("/login", SessionController.signIn);
 
 //User
 routes.get(
-  "/user/:user_id",
-  // UserValidator.getById,
-  // auth.authenticateToken,
-  UserController.getById
+  "/user",
+  UserValidator.getById,
+  auth.authenticateToken,
+  UserController.profile
 );
 routes.post("/user", UserValidator.create, UserController.create);
 routes.put(
-  "/user/:user_id",
+  "/user",
   UserValidator.update,
   auth.authenticateToken,
   UserController.update

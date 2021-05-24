@@ -11,20 +11,29 @@ module.exports = {
   }),
 
   getById: celebrate({
-    [Segments.PARAMS]: Joi.object().keys({
-      user_id: Joi.string().required(),
-    }),
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
   }),
 
   update: celebrate({
-    [Segments.PARAMS]: Joi.object().keys({
-      user_id: Joi.string().required(),
-    }),
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
 
     [Segments.BODY]: Joi.object()
       .keys({
         username: Joi.string().optional(),
         number: Joi.string().optional(),
+        cpf: Joi.string().optional(),
+        number: Joi.string().optional(),
+        cep: Joi.string().optional(),
+        complement: Joi.string().optional(),
+        birthdate: Joi.string().optional(),
       })
       .min(1),
     [Segments.HEADERS]: Joi.object()
