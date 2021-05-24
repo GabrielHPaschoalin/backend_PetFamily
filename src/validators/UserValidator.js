@@ -8,11 +8,6 @@ module.exports = {
       password: Joi.string().min(6).required(),
       number: Joi.string().required(),
     }),
-    [Segments.HEADERS]: Joi.object()
-      .keys({
-        authorization: Joi.string().required(),
-      })
-      .unknown(),
   }),
 
   getById: celebrate({
@@ -32,6 +27,11 @@ module.exports = {
         number: Joi.string().optional(),
       })
       .min(1),
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
   }),
 
   delete: celebrate({

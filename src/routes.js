@@ -30,12 +30,7 @@ routes.get(
   // auth.authenticateToken,
   UserController.getById
 );
-routes.post(
-  "/user",
-  UserValidator.create,
-  auth.authenticateToken,
-  UserController.create
-);
+routes.post("/user", UserValidator.create, UserController.create);
 routes.put(
   "/user/:user_id",
   UserValidator.update,
