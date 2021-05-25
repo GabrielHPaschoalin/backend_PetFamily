@@ -33,7 +33,7 @@ module.exports = {
         number: Joi.string().optional(),
         cep: Joi.string().optional(),
         complement: Joi.string().optional(),
-        birthdate: Joi.string().optional(),
+        birthDate: Joi.string().optional(),
       })
       .min(1),
     [Segments.HEADERS]: Joi.object()
