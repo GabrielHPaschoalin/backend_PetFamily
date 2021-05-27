@@ -44,4 +44,6 @@ routes.delete(
   UserController.delete
 );
 
+routes.post("/forgotPassword", UserValidator.forgot, UserController.forgot);
+
 module.exports = routes;

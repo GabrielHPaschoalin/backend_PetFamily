@@ -79,4 +79,21 @@ module.exports = {
       });
     }
   },
+
+  async forgot(request, response) {
+    try {
+      await Firebase.forgotPassword(request.body.email);
+      return response.status(200).json({ message: "The email was sent." });
+    } catch (err) {
+      console.error(err.code);
+      if (err.code === "auth/user-not-found") {
+        return response.status(404).json({
+          message: "This email is not registered",
+        });
+      }
+      return response.status(500).json({
+        notification: "Internal server error while trying to change data user",
+      });
+    }
+  },
 };

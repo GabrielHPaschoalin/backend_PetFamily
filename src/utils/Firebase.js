@@ -27,4 +27,9 @@ module.exports = {
 
     return result.user.uid;
   },
+
+  async forgotPassword(email) {
+    await firebase.auth().sendPasswordResetEmail(email);
+    return true;
+  },
 };
